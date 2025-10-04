@@ -35,13 +35,6 @@ class CompressorRecipe(ConanFile):
                     for so in dep.cpp_info.bindirs:
                         print(f"Adding Shared Libraries to bin folder {bin_folder}")
                         copy(self, "*.dll", so, bin_folder)
-            elif self.settings.get_safe("os") == "Linux":
-                for dep in self.dependencies.values():
-                    for so in dep.cpp_info.bindirs:
-                        print(f"Adding Shared Libraries to bin folder {bin_folder}")
-                        copy(self, "*.so", so, bin_folder)
-            else:
-                print("Unsupported OS")
 
     def build(self):
         cmake = CMake(self)
